@@ -1,0 +1,260 @@
+ body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+h1{
+    margin: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 10px 0;
+}
+
+.tit {
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+    font-size: 26px;
+   
+}
+
+nav ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    font-size: 17px;
+    margin-top: -0.60px;
+    color: black;
+}
+
+
+.image-container1{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 220px;
+    height: auto;
+    margin: 0 205px;
+    
+}
+.container{
+    margin-top: 50px;
+    margin: 30px;
+    margin-left: 35px;
+    
+}
+h3{
+
+    margin: 0 390px;
+    font-size: 45px;    
+
+    
+
+}
+.auth{
+    margin-left: 100px;
+    
+}
+.par{
+    margin-top: 35px;margin-left: 100px;
+    color: black;
+    font-size: 18px;
+
+}
+
+
+
+h2 {
+    color: #28d0a0;
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 55px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 260px;
+    margin-left: 800px;
+    height: 250px;
+    margin-top: -110px;
+   
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    width: 48%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.connect {
+    background-color: #28a745;
+}
+.connect:hover {
+    background-color: #218838;
+}
+.cancel {
+    background-color: #dc3545;
+}
+.cancel:hover {
+    background-color: #c82333;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+    border-top: 2px solid #e74c3c;
+    margin-top: 180px;
+    height: 85px;
+
+    
+    
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #e74c3c;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+.agents-table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée */
+    border-radius: 8px; /* Bordures arrondies */
+    overflow: hidden; /* Pour arrondir les bords du tableau */
+     }
+     .agents-table th, .agents-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* Lignes séparatrices */
+     }
+     .agents-table th {
+      background-color: #4CAF50;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 14px;
+     }
+     .agents-table td {
+      background-color: #f9f9f9;
+      font-size: 14px;
+     }
+     .agents-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+     }
+     .agents-table tr:hover {
+        background-color: #e1f5c4; /* Couleur de survol */
+        transition: background-color 0.3s ease;
+     }
+     .agents-table th:first-child, .agents-table td:first-child {
+      border-left: 1px solid #ddd;
+     }
+     .agents-table th:last-child, .agents-table td:last-child {
+     border-right: 1px solid #ddd;
+     }
+
+
+     /* Agent Client Contact buton*/
+
+     .btn {
+        display: inline-block;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: var(--highlight-color); 
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-edit {
+        background-color: #399918;
+    }
+
+    .btn-delete {
+        background-color:#FF6500 /*var(--danger-color)*/;
+    }
+
+
+
+    .btn:hover {
+        opacity: 0.8;
+        background-color: #c0392b;
+    }
+
+.register.failed {
+    color: white;
+    font-weight: bold;
+    background-color: #e74c3c; /* Rouge vif */
+    border: 2px solid #c0392b; /* Bordure légèrement plus foncée */
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 50%;
+    margin: 20px auto; /* Centre horizontalement */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet 3D */
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Ajout d'un léger effet au survol */
+.register.failed:hover {
+    transform: scale(1.05); /* Agrandit légèrement l'élément au survol */
+    background-color: #c0392b; /* Change légèrement la couleur au survol */
+}
