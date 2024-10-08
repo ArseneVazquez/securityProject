@@ -6,6 +6,7 @@
     <title>Agents - The KEY SECURITY</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <style>
 
 
@@ -73,8 +74,13 @@ button:hover {
 }
 
 </style>
+<?php 
+    include "connexion.php"; 
 
-<?php include "connexion.php" ?>
+    // Correction de la requête SQL
+    $modifClient = $bdd->query("SELECT * FROM client WHERE id_client=" . $_GET['mod']);
+    $dataRecup = $modifClient->fetch(); 
+?>
 <body>
     <header>
         <div class="tit"><h1>The KEY SECURITY</h1></div>
@@ -86,46 +92,42 @@ button:hover {
     <div class="container">
         <main id="agent">
             <h2>Informations sur le client</h2>
-            <form action="contrat.php" method="POST">
-                <label for="date_signature">La date de signature</label>
-                <input type="date" id="date_signature" name="date_signature" required>
-                <label for="contenu">Article</label>
-                <input type="text" id="contenu" name="contenu" pattern="[a-zA-Z ]+" required>
-                <label for="date_expiration">La date de expiration</label>
-                <input type="date" id="date_expiration" name="date_expiration" required>
+            <form action="" method="POST">
+                <label for="nom">Nom du client&entreprise:</label>
+                <input type="text" id="nom" name="nom" pattern="[a-zA-Z0-9]+" required>
 
+                <label for="adresse">Adresse</label>
+                <input type="text" id="adresse" name="adresse" pattern="[a-zA-Z0-9]+" required>
+
+                <label for="numero-employe">Nombre d'Employeés:</label>
+                <input type="number" id="numero-employe" name="num-employe" required>
+                
                 <button type="submit" name="btnValider">Envoyer</button>
             </form>
         </main>
+        <!-- <p>ID du client à modifier : <?php echo $_GET['mod']; ?></p> -->
+        
 
-<?php 
+        <?php 
     
-    if(isset($_POST['btnValider'])){
-        $Recupdate = $_POST['date_signature'];
-        $Recucontenu = $_POST['contenu'];
-        $Recupdate2 = $_POST['date_expiration'];
+            if(isset($_POST['btnValider'])){
+               
+                $nom = ucfirst($_POST["nom"]);
+                $adresse = $_POST['adresse'];
+                $employe = $_POST['num-employe'];
 
-        // Vérifier si un contrat avec les mêmes données existe déjà
-        $check_duplicate = $bdd->prepare("SELECT * FROM contrat WHERE date_signature = :date_signature AND contenu = :contenu AND date_expiration = :date_expiration");
-        $check_duplicate->bindParam(':date_signature', $Recupdate);
-        $check_duplicate->bindParam(':contenu', $Recucontenu);
-        $check_duplicate->bindParam(':date_expiration', $Recupdate2);
-        $check_duplicate->execute();
 
-            // Si aucun doublon n'est trouvé, insérer les données
-    if ($check_duplicate->rowCount() == 0) {
-        $contrat_insertion = "INSERT INTO contrat (date_signature, contenu , date_expiration) VALUES ('$Recupdate', '$Recucontenu', '$Recupdate2')";      
+                
+                $modifClient = $bdd->prepare("UPDATE client SET nom_client = ?, nombre_agent = ?, adresse = ? WHERE id_client = ?");
+                $modifClient->execute([$nom, $employe, $adresse, $_GET['mod']]);
 
-        $bdd->exec($contrat_insertion );
-        header("location:affichage-contrat.php");
-    } else {
-        echo "<p class='register'>Un contrat avec les mêmes informations existe déjà dans la base de données.</p>";
-    }
-
-       
-    }
-
-?>
+                // Rediriger vers la page d'affichage des clients
+                header("Location: affichage-client.php");
+                exit;
+               
+            }
+        
+        ?>
 
 <?php include "footer.php" ?>
 

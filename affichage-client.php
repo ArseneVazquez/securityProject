@@ -53,15 +53,7 @@ $affichageClient = $bdd->query("Select * from client");
       <h1>The KEY SECURITY</h1>
     </div>
     <div class="lnk">
-      <nav>
-        <ul>
-          <li><a href="index.php">Accueil</a></li>
-          <li><a href="propos.php">À propos de</a></li>
-          <li><a href="service.php">Nos services</a></li>
-          <li><a href="publication.php">Publications</a></li>
-          <li><a href="contact.php">Contact</a></li>
-        </ul>
-      </nav>
+      <?php include "nav.php"; ?>
     </div>
   </header>
 
@@ -87,8 +79,8 @@ $affichageClient = $bdd->query("Select * from client");
             <td><?php echo $dataRecup["nombre_agent"]; ?></td>
             <td><?php echo $dataRecup["adresse"]; ?></td>
             <td><a href="?delete=<?php echo $dataRecup['id_client']; ?>" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette Client ?');">supprimer</a></td>
-            <td><a href="#" class="btn btn-edit">modifier</a></td>
-
+            <td><a href="modification_client.php?mod=<?php echo $dataRecup['id_client']; ?>" class="btn btn-edit">modifier</a></td>
+            
             
         </tr>
     <?php } ?>
@@ -111,13 +103,4 @@ $affichageClient = $bdd->query("Select * from client");
 
 ?>
 
-  <footer>
-    <p>The KEY SECURITY<br>
-      Bujumbura, Commune Mukaza, Avenue du progrès<br>
-      Téléphone: 22224501/72002005<br>
-      email: <a href="mailto:keysec2024@gmail.com">keysec2024@gmail.com</a>
-    </p>
-  </footer>
-
-</body>
-</html>
+<?php include "footer.php" ?>

@@ -43,7 +43,12 @@ button {
     cursor: pointer; /* Change le curseur au survol */
     transition: background-color 0.3s; /* Animation lors du survol */
     margin-left: 70px;
+    font-size: 19px;
     
+}
+
+button:hover {
+    background-color: #c0392b; /* Couleur de fond au survol */
 }
 
 button:hover {
@@ -73,59 +78,54 @@ button:hover {
 }
 
 </style>
-
-<?php include "connexion.php" ?>
 <body>
     <header>
         <div class="tit"><h1>The KEY SECURITY</h1></div>
         <div class="lnk">
-            <?php include "nav.php"; ?>
+        <?php include "nav.php"; ?>
         </div>
     </header>
+    <?php 
+include "connexion.php"; 
 
+    $id_post = $_GET['mod'];
+    $modifPost = $bdd->prepare("SELECT * FROM post WHERE id_post = ?");
+    $modifPost->execute([$id_post]);
+    $dataRecup = $modifPost->fetch();
+
+?>
     <div class="container">
         <main id="agent">
-            <h2>Informations sur le client</h2>
-            <form action="contrat.php" method="POST">
-                <label for="date_signature">La date de signature</label>
-                <input type="date" id="date_signature" name="date_signature" required>
-                <label for="contenu">Article</label>
-                <input type="text" id="contenu" name="contenu" pattern="[a-zA-Z ]+" required>
-                <label for="date_expiration">La date de expiration</label>
-                <input type="date" id="date_expiration" name="date_expiration" required>
+            <h2>Informations sur les Employeés</h2>
+            <form action="" method="POST">
+                <label for="nom">Nom_employé</label>
+                <input type="text" id="nom" name="nom" pattern="[a-zA-Z0-9 ]+" required>
+                <label for="numero-matricule">Numero-matricule</label>
+                <input type="number" id="numero-matricule" name="numero" required>
+
+                <label for="adresse">Adresse_mission</label>
+                <input type="text" id="numero-matricule" name="adresse" pattern="[a-zA-Z0-9 ]+" required><br>
 
                 <button type="submit" name="btnValider">Envoyer</button>
             </form>
         </main>
 
-<?php 
+        <?php 
     
-    if(isset($_POST['btnValider'])){
-        $Recupdate = $_POST['date_signature'];
-        $Recucontenu = $_POST['contenu'];
-        $Recupdate2 = $_POST['date_expiration'];
-
-        // Vérifier si un contrat avec les mêmes données existe déjà
-        $check_duplicate = $bdd->prepare("SELECT * FROM contrat WHERE date_signature = :date_signature AND contenu = :contenu AND date_expiration = :date_expiration");
-        $check_duplicate->bindParam(':date_signature', $Recupdate);
-        $check_duplicate->bindParam(':contenu', $Recucontenu);
-        $check_duplicate->bindParam(':date_expiration', $Recupdate2);
-        $check_duplicate->execute();
-
-            // Si aucun doublon n'est trouvé, insérer les données
-    if ($check_duplicate->rowCount() == 0) {
-        $contrat_insertion = "INSERT INTO contrat (date_signature, contenu , date_expiration) VALUES ('$Recupdate', '$Recucontenu', '$Recupdate2')";      
-
-        $bdd->exec($contrat_insertion );
-        header("location:affichage-contrat.php");
-    } else {
-        echo "<p class='register'>Un contrat avec les mêmes informations existe déjà dans la base de données.</p>";
-    }
-
-       
-    }
-
-?>
-
-<?php include "footer.php" ?>
+            if (isset($_POST['btnValider'])) {
+                $nom_agent = ucfirst($_POST['nom']);
+                $numero_matricule = $_POST['numero'];
+                $adresse_mission = $_POST['adresse'];
+            
+                // Mettre à jour le post dans la base de données
+                $updatePost = $bdd->prepare("UPDATE post SET nom_agent = ?, numero_matricule = ?, adresse_mission = ? WHERE id_post = ?");
+                $updatePost->execute([$nom_agent, $numero_matricule, $adresse_mission, $id_post]);
+            
+                // Redirection après la mise à jour
+                header("Location: affichage-post.php");
+                exit;
+            }
+        
+        ?>
+ <?php include "footer.php" ?>
 

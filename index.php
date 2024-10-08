@@ -25,16 +25,10 @@
         
         </div>
      
-        <nav>
-            <ul>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="propos.php">À propos de</a></li>
-                <li><a href="service.php">Nos services</a></li>
-                <li><a href="publication.php">Publications</a></li>
-                <li><a href="contact.php">contact</a></li>
-                
-            </ul>
-        </nav>
+        <div class="lnk"> 
+        <?php include "nav.php"; ?>
+        </div>
+        
     </header>
     <h2>Bienvenue sur notre plateforme</h2>
 
@@ -58,18 +52,8 @@
         </main>
         
        
-       
+        <?php include "footer.php" ?>
 
-        <footer>
-            <p>The KEY SECURITY<br>
-                Bujumbura, Commune Mukaza, Avenue du progrès<br>
-                Téléphone: 22224501/72002005<br>
-                email: <a href="mailto:keysec2024@gmail.com">keysec2024@gmail.com</a>
-            </p>
-        </footer>
-    </div>
-</body>
-</html>
 
 
 
